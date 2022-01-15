@@ -9,8 +9,6 @@ export default class Header extends Component {
     this.state = {
       loading: false,
       names: '',
-      searchInput: '',
-      disabled: true,
     };
   }
 
@@ -24,21 +22,8 @@ fetchUserName = async () => {
   this.setState({ names, loading: false });
 }
 
-handleChange = (event) => {
-  const { name, value } = event.target;
-  this.setState({ [name]: value }, () => {
-    const { searchInput } = this.state
-    const DOIS = 2;
-    if (searchInput.length >= DOIS) {
-      this.setState({ disabled: false });
-    } else {
-      this.setState({ disabled: true });
-    }
-  });
-}
-
 render() {
-  const { loading, names, searchInput, disabled } = this.state;
+  const { loading, names } = this.state;
   return (
     <header data-testid="header-component">
       <span data-testid="header-user-name">
@@ -53,20 +38,6 @@ render() {
       <Link to="/profile" data-testid="link-to-profile">
         Profile
       </Link>
-      <input
-        data-testid="search-artist-input"
-        type="text"
-        name="searchInput"
-        value={ searchInput }
-        onChange={ this.handleChange }
-      />
-      <button
-        type="button"
-        data-testid="search-artist-button"
-        disabled={ disabled }
-      >
-        Pesquisar
-      </button>
     </header>
   );
 }
