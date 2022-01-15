@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 import Loading from '../componets/Loading';
-import { createUser } from '../services/userAPI';
+import * as userAPI from '../services/userAPI';
 
 export default class Login extends React.Component {
   constructor() {
@@ -47,7 +47,7 @@ export default class Login extends React.Component {
            disabled={ isDisabled }
            onClick={ async () => {
              this.setState({ loading: true });
-             await createUser({ name: userName });
+             await userAPI.createUser({ name: userName });
              this.setState({ redirect: true });
            } }
            data-testid="login-submit-button"
