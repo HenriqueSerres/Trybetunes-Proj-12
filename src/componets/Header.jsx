@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as userAPI from '../services/userAPI';
-import Loading from './Loading';
 
 export default class Header extends Component {
   constructor() {
     super();
     this.state = {
-      loading: false,
-      names: '',
+      names: [],
     };
   }
 
@@ -16,19 +14,19 @@ export default class Header extends Component {
     this.fetchUserName();
   }
 
-fetchUserName = async () => {
-  this.setState({ loading: true });
-  const names = await userAPI.getUser();
-  this.setState({ names, loading: false });
+fetchUserName = () => {
+  userAPI.getUser().then((data) => this.setState({ names: data }));
 }
 
 render() {
-  const { loading, names } = this.state;
+  const { names } = this.state;
+  console.log(names.name);
   return (
     <header data-testid="header-component">
-      <span data-testid="header-user-name">
-        {loading ? <Loading /> : names.name}
-      </span>
+      {names.length !== 0
+        ? <span data-testid="header-user-name">{names.name}</span>
+        : 'Carregando...'}
+
       <Link to="/search" data-testid="link-to-search">
         Search
       </Link>
