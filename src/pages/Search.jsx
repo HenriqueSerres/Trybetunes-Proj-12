@@ -80,7 +80,7 @@ export default class Search extends React.Component {
                 to={ `/album/${album.collectionId}` }
                 data-testid={ `link-to-album-${album.collectionId}` }
               >
-                MÚSICAS
+                Músicas
               </Link>
             </div>
           ))}
