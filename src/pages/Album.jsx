@@ -44,6 +44,7 @@ export default class Album extends React.Component {
             </div>
           ) : (
             <section key={ music.trackName }>
+              <h3>{music.trackName}</h3>
               <audio data-testid="audio-component" src={ music.previewUrl } controls>
                 <track kind="captions" />
                 O seu navegador não suporta o elemento
