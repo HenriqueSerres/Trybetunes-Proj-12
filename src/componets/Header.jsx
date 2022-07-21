@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import * as userAPI from '../services/userAPI';
+import Loading from './Loading';
 
 export default class Header extends Component {
   constructor() {
@@ -25,7 +26,7 @@ render() {
     <header data-testid="header-component">
       {names.length !== 0
         ? <span data-testid="header-user-name">{names.name}</span>
-        : 'Carregando...'}
+        : <Loading />}
 
       <Link to="/search" data-testid="link-to-search">
         Search

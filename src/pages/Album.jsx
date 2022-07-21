@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../componets/Header';
 import getMusics from '../services/musicsAPI';
 import { addSong, removeSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import Loading from '../componets/Loading';
 
 export default class Album extends React.Component {
   constructor(props) {
@@ -73,7 +74,7 @@ export default class Album extends React.Component {
               />
             </section>)
         ))}
-        {loading && 'Carregando...'}
+        {loading && <Loading />}
       </div>
     );
   }
